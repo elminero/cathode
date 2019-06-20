@@ -36,7 +36,7 @@ Route::get('/', function (Twitter $twitter) {
 });
 
 
-Route::resource('/projects', 'ProjectsController')->middleware('can:update,project');
+Route::resource('/projects', 'ProjectsController');
 
 /*
 +--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+

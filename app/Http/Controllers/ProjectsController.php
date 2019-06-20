@@ -19,10 +19,7 @@ use Illuminate\Support\Facades\Gate;
 class ProjectsController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
 
     /**
