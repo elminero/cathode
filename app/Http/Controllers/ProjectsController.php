@@ -20,6 +20,10 @@ class ProjectsController extends Controller
 {
 
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     /**
@@ -29,7 +33,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('owner_id', auth()->id())->get();
+        //$projects = Project::where('owner_id', auth()->id())->get();
+
+        $projects = Project::all();
 
         return view('projects.index', compact('projects'));
     }
@@ -116,6 +122,9 @@ class ProjectsController extends Controller
      */
     public function update(Project $project)
     {
+
+        $this->authorize('update', $project);
+
         $attributes = request()->validate([
             'title' => ['required', 'min:3'],
             'description' => ['required', 'min:3']

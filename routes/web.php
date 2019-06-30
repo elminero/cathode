@@ -19,12 +19,15 @@ use App\Example;
 
 use App\Services\Twitter;
 
+
+
+/*
 app()->singleton('Employee', function () {
     return new Employee(new Example());
 });
+*/
 
-
-//dd(app('App\Services\Twitter'));
+//dd(app('address'));
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Services\Twitter;
 
+use App\Example;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->singleton('happy', function () {
+            return new Example();
+        });
     }
 
     /**

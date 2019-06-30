@@ -9,39 +9,43 @@
                 <h2>Description</h2>
                 <p><?php echo e($project->description); ?></p>
 
-                <a href="/projects/<?php echo e($project->id); ?>/edit"><button class="btn btn-primary">Edit</button></a>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $project)): ?>
 
-                <form class="float-right" method="post" action="/projects/<?php echo e($project->id); ?>">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('delete'); ?>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                    <a href="/projects/<?php echo e($project->id); ?>/edit"><button class="btn btn-primary">Edit</button></a>
 
-                <div class="clear-both"></div>
+                    <form class="float-right" method="post" action="/projects/<?php echo e($project->id); ?>">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('delete'); ?>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
 
-            </div>
+                    <div class="clear-both"></div>
 
-
-            <div class="col-md-4">
-
-                <h1>Add a Task </h1>
-                <form method="post" action="/projects/<?php echo e($project->id); ?>/Task">
-
-                    <?php echo csrf_field(); ?>
-
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Add a Task</button>
-                    </div>
-
-                </form>
-
+                <?php endif; ?>
 
             </div>
+
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $project)): ?>
+                <div class="col-md-4">
+
+                    <h1>Add a Task </h1>
+                    <form method="post" action="/projects/<?php echo e($project->id); ?>/Task">
+
+                        <?php echo csrf_field(); ?>
+
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add a Task</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            <?php endif; ?>
 
 
             <div class="col-md-4">
